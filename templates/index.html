@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Insurance Purchase</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .result-cont{
+            display: flex;
+            flex-direction: column;
+            width: 96vw;
+            height: 100vh;
+        }
+        .heading{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .data-div{
+            display: grid;
+            margin-top: 60px;
+            grid-template-columns: auto auto;
+        }
+        .data-cont{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body style="background-color: #121212; color: white; height: 100vh;" data-bs-theme='dark'>
+        {%if yes%}
+            <div class="result-cont">
+                <div class="heading">
+                    <h3>Total Churn</h3>
+                    <span>Yes: <strong>{{data.Yes}}</strong></span>
+                    <span>No: <strong>{{data.No}}</strong></span>
+                </div>
+                <div class="data-div">
+                    <div class="data-cont">
+                        <span>Predictions affected by driving license</span>
+                        {{bar_chart|safe}}
+                    </div>
+                    <div class="data-cont">
+                        <span>Predictions affected by status of previous insurance</span>
+                        {{bar_chart2|safe}}
+                    </div>
+                    <div class="data-cont">
+                        <span>Predictions affected by gender</span>
+                        {{bar_chart3|safe}}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="container main-content gap-5 w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+                <h1>Check Customer Insurance Purchase</h1> 
+            
+                <form action="" method="post" class="input-form form-control d-flex flex-column w-75 gap-3 p-3" enctype="multipart/form-data">
+                    <label for="csv_file">Select a .csv file:</label>
+                    <input type="file" name="csv_file" id="csv_file" accept=".csv" class="form-control">
+                    <input type="submit" value="Check" class="btn btn-primary">
+                </form>
+            </div>
+        {%endif%}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
